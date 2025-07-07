@@ -1,2 +1,6 @@
 # ORACLEDB-EX-02
 OracleDB-Ex-02 Exercise at İ2İ Systems Software Internship
+
+I deployed Oracle Database 21c Express Edition (XE) on Google Cloud Platform (GCP) using Docker, covering instance setup, Docker installation, and container configuration with exposed ports (1521 for SQLPlus, 5500 for Enterprise Manager) whose screenshots are available. After pulling the official Oracle image and launching the container with persistent storage, the database became accessible via SQLPlus (docker exec -it oracle-xe sqlplus system/YourPassword@XE). 
+
+I connected to my GCP Compute Engine VM instance via SSH to install and run Docker. While attempting to pull the Oracle XE Docker image, I encountered a permission error related to Docker socket access, which was resolved by adding my user to the Docker group. I then checked my available disk space using df -h and discovered that my root filesystem was nearly full. To identify what's taking up space, I used du -h / --max-depth=1 and found that the /usr and /opt directories were the largest. Since my instance only had 9.7 GB of total disk space, I explored options to clean up unnecessary files using package manager and Docker cleanup commands, and learned how to expand my disk via the GCP console and resize the file system from within the VM.
